@@ -1,9 +1,6 @@
-package br.com.boucher.domain.entidades;
+package br.com.boucher.domain.model;
 
 
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -15,11 +12,8 @@ public class Estabelecimento {
 
     private UUID id;
     private String nome;
-    @ManyToOne(fetch = FetchType.LAZY)
     private EnderecoEstabelecimento enderecoEstabelecimento;
-    @ManyToOne(fetch = FetchType.LAZY)
     private CategoriaEstabelecimento categoriaEstabelecimento;
-    @ManyToMany
     private List<Pagamento> pagamentos = new ArrayList<>();
 
 }

@@ -2,7 +2,7 @@ package br.com.boucher.domain.service;
 
 
 
-import br.com.boucher.domain.entidades.FormaPagamento;
+import br.com.boucher.domain.model.FormaPagamento;
 import br.com.boucher.domain.port.FormaPagamentoDatabasePort;
 import br.com.boucher.domain.port.FormaPagamentoServicePort;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package br.com.boucher.app.controller;
 
 
-import br.com.boucher.domain.entidades.FormaPagamento;
+import br.com.boucher.domain.model.FormaPagamento;
 import br.com.boucher.domain.port.FormaPagamentoServicePort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("v1/boucher/forma_pagamento")
+@RequestMapping("boucher/v1/forma_pagamento")
 public class FormaPagamentoController {
 
     private final FormaPagamentoServicePort formaPagamentoServicePort;

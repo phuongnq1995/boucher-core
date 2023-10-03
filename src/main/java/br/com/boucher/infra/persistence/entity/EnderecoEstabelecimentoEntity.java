@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -18,6 +17,6 @@ public class EnderecoEstabelecimentoEntity {
     @UuidGenerator
     private UUID id;
     private String logradouro;
-    private BigDecimal longitude;
-    private BigDecimal latitude;
+    private Double longitude;
+    private Double latitude;
 }

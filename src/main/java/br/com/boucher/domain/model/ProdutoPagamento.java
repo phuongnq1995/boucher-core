@@ -1,4 +1,4 @@
-package br.com.boucher.domain.entidades;
+package br.com.boucher.domain.model;
 
 import lombok.Data;
 
