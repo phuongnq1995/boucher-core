@@ -12,4 +12,5 @@ public interface EstabelecimentoMapper {
 
     Estabelecimento mapFrom(EstabelecimentoEntity entity);
     EstabelecimentoEntity mapFrom(Estabelecimento estabelecimento);
+
 }

@@ -7,8 +7,9 @@ import br.com.boucher.infra.persistence.mapper.EstabelecimentoMapper;
 import br.com.boucher.infra.persistence.repository.EstabelecimentoRepository;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
+
 
 @Component
 public class EstabelecimentoDatabaseAdapter implements EstabelecimentoDatabasePort {
@@ -25,13 +26,13 @@ public class EstabelecimentoDatabaseAdapter implements EstabelecimentoDatabasePo
         return EstabelecimentoMapper.INSTANCE.mapFrom(entity);
     }
     @Override
-    public Estabelecimento getById(UUID id) {
-        EstabelecimentoEntity entity = estabelecimentoRepository.findById(id).orElse(null);
+    public Estabelecimento getById(Long id) {
+        var entity = estabelecimentoRepository.findById(id).orElse(null);
         return EstabelecimentoMapper.INSTANCE.mapFrom(entity);
     }
     @Override
-    public List<Estabelecimento> getAll() {
-        List<EstabelecimentoEntity> entities = estabelecimentoRepository.findAll()
+    public List<Estabelecimento> getAll(Double latitude, Double longitude, BigDecimal variacao) {
+        var entities = estabelecimentoRepository.findAll(latitude, longitude, variacao)
                 .stream().toList();
         return entities.stream().map(EstabelecimentoMapper.INSTANCE::mapFrom).toList();
     }
