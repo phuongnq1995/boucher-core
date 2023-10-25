@@ -2,22 +2,18 @@ package br.com.boucher.infra.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.UuidGenerator;
-
-import java.util.UUID;
 
 @Data
 @Entity(name = "pagamento")
 public class PagamentoEntity {
 
     @Id
-    @GeneratedValue
-    @UuidGenerator
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private ProdutoPagamentoEntity produtoPagamentoEntity;
+    private ProdutoPagamentoEntity produtoPagamento;
     @ManyToOne(fetch = FetchType.LAZY)
-    private FormaPagamentoEntity formaPagamentoEntity;
+    private FormaPagamentoEntity formaPagamento;
     @ManyToOne(fetch = FetchType.LAZY)
-    private OperadorEntity operadorEntity;
+    private OperadorEntity operador;
 }

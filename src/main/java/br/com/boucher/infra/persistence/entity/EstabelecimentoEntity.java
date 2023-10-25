@@ -2,25 +2,24 @@ package br.com.boucher.infra.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Data
 @Entity(name = "estabelecimento")
 public class EstabelecimentoEntity {
 
     @Id
-    @GeneratedValue
-    @UuidGenerator
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
-    @ManyToOne(fetch = FetchType.LAZY)
+    private String urlImagem;
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private EnderecoEstabelecimentoEntity enderecoEstabelecimento;
     @ManyToOne(fetch = FetchType.LAZY)
     private CategoriaEstabelecimentoEntity categoriaEstabelecimento;
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.PERSIST)
     private List<PagamentoEntity> pagamentos;
 
 }

@@ -8,7 +8,7 @@ import br.com.boucher.domain.port.FormaPagamentoServicePort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Service
 public class FormaPagamentoService implements FormaPagamentoServicePort {
@@ -20,8 +20,7 @@ public class FormaPagamentoService implements FormaPagamentoServicePort {
     }
 
     @Override
-    public FormaPagamento get(UUID id) {
-
+    public FormaPagamento get(Long id) {
         return pagamentoDatabasePort.get(id);
     }
 

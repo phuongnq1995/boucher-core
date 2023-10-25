@@ -8,7 +8,7 @@ import br.com.boucher.infra.persistence.repository.FormaPagamentoRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Component
 public class FormaPagamentoDatabaseAdapter implements FormaPagamentoDatabasePort {
@@ -20,7 +20,7 @@ public class FormaPagamentoDatabaseAdapter implements FormaPagamentoDatabasePort
     }
 
     @Override
-    public FormaPagamento get(UUID id) {
+    public FormaPagamento get(Long id) {
         FormaPagamentoEntity entity = formaPagamentoRepository.findById(id).orElse(null);
         return FormaPagamentoMapper.INSTANCE.mapFrom(entity);
     }

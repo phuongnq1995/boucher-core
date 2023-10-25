@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("boucher/v1/forma_pagamento")
@@ -24,7 +24,7 @@ public class FormaPagamentoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> get(@PathVariable UUID id){
+    public ResponseEntity<?> get(@PathVariable Long id){
         FormaPagamento formaPagamento = formaPagamentoServicePort.get(id);
         return new ResponseEntity<>(formaPagamento, HttpStatus.OK);
     }

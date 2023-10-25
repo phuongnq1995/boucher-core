@@ -5,12 +5,12 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 @Data
 public class Estabelecimento {
 
-    private UUID id;
+    private Long id;
     private String nome;
     private EnderecoEstabelecimento enderecoEstabelecimento;
     private CategoriaEstabelecimento categoriaEstabelecimento;

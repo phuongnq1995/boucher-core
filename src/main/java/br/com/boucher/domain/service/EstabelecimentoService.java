@@ -7,8 +7,9 @@ import br.com.boucher.domain.port.EstabelecimentoDatabasePort;
 import br.com.boucher.domain.port.EstabelecimentoServicePort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
+
 
 @Service
 public class EstabelecimentoService implements EstabelecimentoServicePort {
@@ -25,13 +26,19 @@ public class EstabelecimentoService implements EstabelecimentoServicePort {
     }
 
     @Override
-    public Estabelecimento getById(UUID id) {
+    public Estabelecimento getById(Long id) {
 
         return estabelecimentoDatabasePort.getById(id);
     }
 
     @Override
-    public List<Estabelecimento> getAll() {
-        return estabelecimentoDatabasePort.getAll();
+    public List<Estabelecimento> getAll(Double latitude, Double longitude, Double raio) {
+
+        return estabelecimentoDatabasePort.getAll(latitude,longitude,calcularVariacaoEmGrau(raio));
+    }
+
+    public BigDecimal calcularVariacaoEmGrau(double raioEmKm) {
+        double raioTerra = 6378.137;
+        return BigDecimal.valueOf((raioEmKm/raioTerra) * 180 / Math.PI);
     }
 }
