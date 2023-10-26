@@ -3,6 +3,8 @@ package br.com.boucher.domain.service;
 
 
 import br.com.boucher.domain.model.Estabelecimento;
+import br.com.boucher.domain.model.tec.EstabelecimentoPaginacao;
+import br.com.boucher.domain.model.tec.Paginacao;
 import br.com.boucher.domain.port.EstabelecimentoDatabasePort;
 import br.com.boucher.domain.port.EstabelecimentoServicePort;
 import org.springframework.stereotype.Service;
@@ -33,8 +35,12 @@ public class EstabelecimentoService implements EstabelecimentoServicePort {
 
     @Override
     public List<Estabelecimento> getAll(Double latitude, Double longitude, Double raio) {
-
         return estabelecimentoDatabasePort.getAll(latitude,longitude,calcularVariacaoEmGrau(raio));
+    }
+
+    @Override
+    public EstabelecimentoPaginacao getAllByRadius(Double latitude, Double longitude, Double raio, Paginacao paginacao) {
+        return estabelecimentoDatabasePort.getAllByRadius(latitude,longitude,calcularVariacaoEmGrau(raio),paginacao);
     }
 
     public BigDecimal calcularVariacaoEmGrau(double raioEmKm) {

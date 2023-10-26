@@ -3,15 +3,13 @@ package br.com.boucher.app.controller;
 import br.com.boucher.app.controller.dto.EstabelecimentoSaveRequest;
 import br.com.boucher.app.controller.mapper.EstabelecimentoMapper;
 import br.com.boucher.domain.model.Estabelecimento;
+import br.com.boucher.domain.model.tec.Paginacao;
 import br.com.boucher.domain.port.EstabelecimentoServicePort;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -27,12 +25,23 @@ public class EstabelecimentoController {
         Estabelecimento estabelecimento = estabelecimentoServicePort.save(EstabelecimentoMapper.INSTANCE.mapFrom(request));
         return new ResponseEntity<>(estabelecimento,HttpStatus.CREATED);
     }
-    @GetMapping
+/*    @GetMapping
     public ResponseEntity<?> getAll(@PathParam("latitude") Double latitude,
                                     @PathParam("longitude") Double longitude,
                                     @PathParam("raio") Double raio){
 
         List<Estabelecimento> estabelecimentos = estabelecimentoServicePort.getAll(latitude,longitude,raio);
+        return new ResponseEntity<>(estabelecimentos,HttpStatus.OK);
+    }*/
+    @GetMapping
+    public ResponseEntity<?> getAll(@RequestParam("latitude") Double latitude,
+                                    @RequestParam("longitude") Double longitude,
+                                    @RequestParam("raio") Double raio,
+                                    @RequestParam(name = "page", required = false, defaultValue = "0") int page,
+                                    @RequestParam(name = "size", required = false, defaultValue = "10") int size){
+
+        Paginacao paginacao = new Paginacao(page,size);
+        var estabelecimentos = estabelecimentoServicePort.getAllByRadius(latitude,longitude,raio,paginacao);
         return new ResponseEntity<>(estabelecimentos,HttpStatus.OK);
     }
     @GetMapping("{id}")
