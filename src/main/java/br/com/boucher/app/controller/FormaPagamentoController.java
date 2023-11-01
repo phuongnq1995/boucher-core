@@ -23,7 +23,7 @@ public class FormaPagamentoController {
         this.formaPagamentoServicePort = formaPagamentoServicePort;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable Long id){
         FormaPagamento formaPagamento = formaPagamentoServicePort.get(id);
         return new ResponseEntity<>(formaPagamento, HttpStatus.OK);

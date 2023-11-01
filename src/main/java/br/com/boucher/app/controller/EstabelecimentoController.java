@@ -25,14 +25,7 @@ public class EstabelecimentoController {
         Estabelecimento estabelecimento = estabelecimentoServicePort.save(EstabelecimentoMapper.INSTANCE.mapFrom(request));
         return new ResponseEntity<>(estabelecimento,HttpStatus.CREATED);
     }
-/*    @GetMapping
-    public ResponseEntity<?> getAll(@PathParam("latitude") Double latitude,
-                                    @PathParam("longitude") Double longitude,
-                                    @PathParam("raio") Double raio){
 
-        List<Estabelecimento> estabelecimentos = estabelecimentoServicePort.getAll(latitude,longitude,raio);
-        return new ResponseEntity<>(estabelecimentos,HttpStatus.OK);
-    }*/
     @GetMapping
     public ResponseEntity<?> getAll(@RequestParam("latitude") Double latitude,
                                     @RequestParam("longitude") Double longitude,
@@ -44,8 +37,8 @@ public class EstabelecimentoController {
         var estabelecimentos = estabelecimentoServicePort.getAllByRadius(latitude,longitude,raio,paginacao);
         return new ResponseEntity<>(estabelecimentos,HttpStatus.OK);
     }
-    @GetMapping("{id}")
-    public ResponseEntity<?> get(Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> get(@PathVariable Long id){
         return new ResponseEntity<>(estabelecimentoServicePort.getById(id),HttpStatus.OK);
     }
 }

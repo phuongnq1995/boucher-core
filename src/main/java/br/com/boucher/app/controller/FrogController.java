@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("sapo")
+@RequestMapping("boucher/v1/sapo")
 public class FrogController {
 
     @GetMapping
